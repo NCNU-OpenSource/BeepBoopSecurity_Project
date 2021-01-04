@@ -115,12 +115,6 @@ sudo pip install DateTime
 
 2. attack
 
-### code
-- `BeepBoop_bot.py`
-```python=
-
-```
-
 
 ## LEGO MINDSTORMS NXT
 
@@ -164,7 +158,7 @@ sudo pip install DateTime
 
 ## 未來展望
 
-- hey google
+- 可以結合 hey google
 
 ## 參考資料
 

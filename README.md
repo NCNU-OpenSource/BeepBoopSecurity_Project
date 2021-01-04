@@ -89,21 +89,30 @@ sudo pip install DateTime
 
 ### 建立
 1. 搜尋 `BotFather`（點選有藍勾勾的那個）
+
      ![](https://i.imgur.com/5aSNVAU.jpg)
+     
 2. `/start`
 3. `/newbot`
 4. 替機器人取個名字
 5. 命名 id，以`_bot`結尾（id名不可重複）
+
 ![](https://i.imgur.com/fatqGLk.png)
+
 6. 系統會給你一串 API（要加在程式碼中的）
+
  ![](https://i.imgur.com/gEzzqDW.png)
-    - API改在TOKEN那 不能洩漏不然會被亂改
-    ![](https://i.imgur.com/RHdeLZj.png)
+ 
+  - API改在TOKEN那 不能洩漏不然會被亂改
+    
+   ![](https://i.imgur.com/RHdeLZj.png)
 
 
 ### 指令介紹
 1. start 
+
 ![](https://i.imgur.com/Ml9UI5o.jpg)
+
 2. attack
 
 ### code

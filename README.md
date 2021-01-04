@@ -113,9 +113,9 @@
 ![](https://i.imgur.com/ajCazHq.jpg)
 
 
-## 未來藍圖
+## 未來展望
 
-- hey google
+- 新增語音助理 (Ex. Hey google)
 
 ## 參考資料
 

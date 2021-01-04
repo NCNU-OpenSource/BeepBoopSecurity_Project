@@ -3,8 +3,8 @@
 ## 動機發想
 
 - 最一開始我們希望可以做一個**樂高殺手**，顧名思義就是用樂高做的殺手，藏在 MOLI 的角落攻擊他人，把樂高積木射到目標的前面一點點，讓目標採到，聽起來就超好玩的。
-- 但 <font color=#800000>邱呱呱aka王嫂</font>覺得實用性不足，於是我們就決定幫樂高殺手招募同伴，感應器殺手跟照相機殺手就來了，他們是一支要保家衛國的隊伍，如果有人想要強行闖入你家的話，就會拍照傳給使用者，讓使用者決定要不要攻擊，這樣就不會有無辜的人受害了，我們樂高殺手是正義的化身。
-- <font color=#800000>邱呱呱aka王嫂</font>還是覺得不滿足，於是我們決定把樂高殺手再進化，因為樂高其實蠻貴的，所以我們把子彈換成橡皮筋，超聰明的！
+- 但==邱呱呱aka王嫂==覺得實用性不足，於是我們就決定幫樂高殺手招募同伴，感應器殺手跟照相機殺手就來了，他們是一支要保家衛國的隊伍，如果有人想要強行闖入你家的話，就會拍照傳給使用者，讓使用者決定要不要攻擊，這樣就不會有無辜的人受害了，我們樂高殺手是正義的化身。
+- ==邱呱呱aka王嫂==還是覺得不滿足，於是我們決定把樂高殺手再進化，因為樂高其實蠻貴的，所以我們把子彈換成橡皮筋，超聰明的！
 - 試想你今天是壞人，想要闖進無辜百姓的家裡偷東西，這時突然有一個東西一直射橡皮筋，勢必會喚起小時候被爸爸拿橡皮筋修理的恐懼，保家衛國任務達成！
 
 
@@ -28,20 +28,16 @@
 
 ### 12/30
 
-
 - 完成紅外線偵測及影像辨識
 - 機械手臂製作完成
-
 
 ### 1/1 開心的跨年
 
 - 居酒屋好吃
 
-
 ### 1/4 
 
 - 整合 NXT & Raspberry pi
-
 
 ## 所需設備
 
@@ -64,17 +60,58 @@
 
 ![](https://i.imgur.com/0umeUXd.jpg)
 
+### 安裝套件
+
+- **python package index**
+```python=
+sudo apt-get install python-pip
+```
+- **telepot**
+```python=
+sudo pip install telepot
+```
+- **GPIO**
+```python=
+sudo pip install RPi.GPIO
+```
+- **DateTime**
+```python=
+sudo pip install DateTime
+```
+
 ## Telegram Bot
 ### 系統架構
 
 - Python
 - Telegram
 
-### 安裝套件
+### 建立
+1. 搜尋 `BotFather`（點選有藍勾勾的那個）
+     ![](https://i.imgur.com/5aSNVAU.jpg)
+2. `/start`
+3. `/newbot`
+4. 替機器人取個名字
+5. 命名 id，以`_bot`結尾（id名不可重複）
+![](https://i.imgur.com/fatqGLk.png)
+6. 系統會給你一串 API（要加在程式碼中的）
+ ![](https://i.imgur.com/gEzzqDW.png)
+    - API改在TOKEN那 不能洩漏不然會被亂改
+    ![](https://i.imgur.com/RHdeLZj.png)
+
 
 ### 指令介紹
+1. start 
+![](https://i.imgur.com/Ml9UI5o.jpg)
+2. attack
 
-## LEGO MINDSTORMS Education NXT
+### code
+- `BeepBoop_bot.py`
+```python=
+
+```
+
+
+## LEGO MINDSTORMS NXT
 
 ### 什麼是 NXT？
 
@@ -90,7 +127,7 @@
     - 樂高零件
 - 需要技能
     - 會使用 NXT programming 的程式設計軟體
-    - <font color=#800000>保持童心</font>
+    - ==保持童心==
 
 ### 步驟
 
@@ -116,7 +153,7 @@
 
 ## 未來展望
 
-- 新增語音助理 (Ex. Hey google)
+- hey google
 
 ## 參考資料
 
@@ -127,7 +164,12 @@
 - [[PIR] 簡易人體紅外線感應 (PIR) 模組測試電路](https://ruten-proteus.blogspot.com/2013/03/PIR-testing.html)
 - [Home Notification using Telegram and Raspberry Pi](https://tutorial.cytron.io/2019/03/14/home-notification-using-telegram-raspberry-pi/)
 
+### 紅外線感測送出提醒到 Telegram Bot
+- [Home Notification using Telegram and Raspberry Pi](https://tutorial.cytron.io/2019/03/14/home-notification-using-telegram-raspberry-pi/)
+
 ### WebCam 連上樹莓派
+- [Home Security using Raspberry Pi + Web Cam + PIR Sensor and Telegram Bot](https://www.techtalks.lk/blog/2017/9/home-security-using-raspberry-pi--web-cam--pir-sensor-and-telegram-bot)
+- [在 Raspberry Pi 中使用 USB 網路攝影機（Webcam）照相](https://blog.gtwang.org/iot/raspberry-pi-usb-webcam/)
 
 ### NXT 射橡皮筋手臂設計
 
@@ -139,6 +181,7 @@
 - **107213013 資管三 陳暐婷**
     - 寫 github
     - 樹莓派連接 WebCam（協助）
+    - Open source 蒐集
 - **107213024 資管三 王為棟**
     - 製作 NXT 機械手臂（協助）
 - **107213048 資管三 趙洸佑**

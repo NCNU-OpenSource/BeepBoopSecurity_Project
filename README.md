@@ -4,13 +4,15 @@
 
 - 最一開始我們希望可以做一個**樂高殺手**，顧名思義就是用樂高做的殺手，藏在 MOLI 的角落攻擊他人，把樂高積木射到目標的前面一點點，讓目標採到，聽起來就超好玩的。
 - 但 <font color=#800000>邱呱呱 aka 王嫂</font> 覺得實用性不足，於是我們就決定幫樂高殺手招募同伴，感應器殺手跟照相機殺手就來了，他們是一支要保家衛國的隊伍，如果有人想要強行闖入你家的話，就會拍照傳給使用者，讓使用者決定要不要攻擊，這樣就不會有無辜的人受害了，我們樂高殺手是正義的化身。
--  <font color=#800000>邱呱呱 aka 王嫂</font> 還是覺得不滿足，於是我們決定把樂高殺手再進化，因為樂高其實蠻貴的，所以我們把子彈換成橡皮筋，超聰明的！
+-  <font color=#800000>但我們還是</font> 覺得不滿足，於是我們決定把樂高殺手再進化，因為樂高其實蠻貴的，所以我們把子彈換成橡皮筋，超聰明的！
 - 試想你今天是壞人，想要闖進無辜百姓的家裡偷東西，這時突然有一個東西一直射橡皮筋，勢必會喚起小時候被爸爸拿橡皮筋修理的恐懼，保家衛國任務達成！
 
 
 ## 功能
 
-- 感應器感應到有人經過之後，就會拍照傳送給使用者，由使用者決定要不要發射橡皮筋。
+- 當有可疑人士在家門口徘徊或是靠近時，會發送可疑人士的照片給屋主，使屋主能夠隨時監控家的安全
+- 屋主可以針對可疑人士發動攻擊(設橡皮筋)
+- 
 
 
 ## 時間
@@ -21,6 +23,8 @@
 - 樹莓派連接成功，設定完成
 - 找齊需要的設備
 
+### 12/23 
+- 完成 telegram bot 基本設定
 
 ### 12/25 開心的聖誕節
 
@@ -29,8 +33,9 @@
 
 ### 12/30
 
-- 完成紅外線偵測及影像辨識
-- 機械手臂製作完成
+- 完成紅外線偵測的硬體架構與程式
+- 完成影像辨識的硬體架構與程式
+- 完成機械手臂的製作
 
 ### 1/1 開心的跨年
 
@@ -40,36 +45,39 @@
 
 - 整合 NXT & Raspberry pi
 
-## 所需設備
-
+## 所需硬體設備
 - Raspberry Pi 3
+### 紅外線感測可疑人士
 - 樹莓派紅外線感測器
     - IR Infrared PIR Motion Sensor
 - 杜邦線（公母、母母）
 - 電阻
 - 麵包板
+### 針對可疑人士進行拍攝
 - WebCamera
     - SpotCam USB-CAM01 高畫質 FHD 視訊攝影機
     - [PChome 購買連結](https://24h.m.pchome.com.tw/prod/DCAS4U-A900ANFN2)
+### 對可疑人士發動攻擊
 - NXT 第二代
 
 ## Raspberry Pi
-### 接線方式
+### 紅外線感測器與 webcam 接線方式
 
 ![](https://www.raspberrypi.com.tw/wp-content/uploads/2014/09/connect-serial-to-raspberry-pi-model-b-plus.png)
+(要在細獎，甚麼感測器的vvc連到Pi的5v...)
 - 5V（墨綠線）
 - Ground（紫線）
 - GPIO17（紅線）
 
 ![](https://i.imgur.com/0umeUXd.jpg)
 
-### 安裝套件
+### 在 Pi 需先安裝的套件
 
-- **python package index**
+- **python package index** : 對python環境的進行安裝
 ```python=
 sudo apt-get install python-pip
 ```
-- **telepot**
+- **telepot** : 支援許
 ```python=
 sudo pip install telepot
 ```
@@ -88,7 +96,7 @@ sudo pip install DateTime
 - Python
 - Telegram
 
-### 建立
+### 建立 telegram 
 1. 搜尋 `BotFather`（點選有藍勾勾的那個）
 
      ![](https://i.imgur.com/5aSNVAU.jpg)
@@ -110,13 +118,13 @@ sudo pip install DateTime
 
 
 ### 指令介紹
-1. start 
+1. `/start `
 
 ![](https://i.imgur.com/Ml9UI5o.jpg)
 
-2. attack
-
-
+2. `/attack`
+3. `/isme>`
+4. `/exit>
 ## LEGO MINDSTORMS NXT
 
 ### 什麼是 NXT？
@@ -159,7 +167,10 @@ sudo pip install DateTime
 
 ## 未來展望
 
-- 可以結合 hey google
+1. telegram bot 介面可以再優化，變得更人性化
+2. 不需再短時間一直補充攻擊武器(eg.橡皮筋)，而是就很有
+3. 可以設定服務開啟與關閉的時間
+2. 可以結合 hey google 智慧語音
 
 ## 參考資料
 
@@ -188,15 +199,22 @@ sudo pip install DateTime
     - 寫 github
     - 樹莓派連接 WebCam
     - NXT 藍芽連線
+    - 製作PPT
 - **107213024 資管三 王為棟**
     - 製作 NXT 機械手臂
     - NXT 藍芽連線
 - **107213048 資管三 趙洸佑**
     - 製作 NXT 機械手臂
     - NXT programming
-- **107213051 資管三 李畇彤 aka 茄仔🍆**
+    - NXT 藍芽連線
+    - 製作PPT
+- **107213051 資管三 李畇彤**
     - 寫 github
     - 製作樹莓派紅外線感測
-- **107213055 資管三 邱品萍 aka 王嫂**
+    - 製作PPT
+- **107213055 資管三 邱品萍**
     - 建立 telegram bot
     - 樹莓派連接 WebCam
+    - Python Programming(紅外線感測 + webcam 影像處理)
+    - 製作PPT
+    - 撰寫 Github

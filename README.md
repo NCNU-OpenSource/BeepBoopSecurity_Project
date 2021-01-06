@@ -43,7 +43,8 @@
 ## 所需設備
 
 - Raspberry Pi 3
-- 紅外線感測器
+- 樹莓派紅外線感測器
+    - IR Infrared PIR Motion Sensor
 - 杜邦線（公母、母母）
 - 電阻
 - 麵包板
@@ -151,13 +152,6 @@ sudo pip install DateTime
     - 重置變數
     ![](https://i.imgur.com/aT3GywA.jpg)
 
-3. **編寫python程式**
-    - 引用套件pyautogui、os、shutil、time、paramiko
-    
-    - 開啟NXT programming 按鍵座標偵測
-    
-    - 開始寫程式，要知道PI的IP位置。
-
 ### 成品
 
 ![](https://i.imgur.com/ajCazHq.jpg)
@@ -186,8 +180,6 @@ sudo pip install DateTime
 ### NXT 射橡皮筋手臂設計
 
 - [橡皮筋槍+電子發射系統](http://yushesnxt.blogspot.com/2015/01/2015129.html)
-### Python ssh
-- [paramiko](https://blog.csdn.net/yaningli/article/details/78223361)
 
 
 ## 工作分配

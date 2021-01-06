@@ -37,8 +37,6 @@ while True:
         turn += 1
     elif (mes == "/stop" and turn == 1):
         pyautogui.click(1872, 850, button='left')
-        turn += 1
-    elif (mes == "/end" and turn == 2):
-        turn = 0
+        turn -= 1
     else:
         time.sleep(2)

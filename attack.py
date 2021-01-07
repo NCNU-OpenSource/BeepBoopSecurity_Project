@@ -5,18 +5,17 @@ import time
 import paramiko
 
 def ssh_scp_get(ip, port, user, password, remote_file, local_file): 
-    ssh = paramiko.SSHClient() 
+    ssh = paramiko.SSHClient() # 建立SSH
     ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-    ssh.connect(ip, 22, 'pi', password) #進行SSH
+    ssh.connect(ip, 22, 'username', password) # 進行ssh連接 
     a = ssh.exec_command('date')
-    stdin, stdout, stderr = a
-    print(stdout.read())
-    sftp = paramiko.SFTPClient.from_transport(ssh.get_transport())
-    sftp = ssh.open_sftp()
-    sftp.get(remote_file, local_file) #複製遠端檔案
-#ip = "192.168.231.20"
+    stdin, stdout, stderr = a 
+    #print(stdout.read())
+    sftp = paramiko.SFTPClient.from_transport(ssh.get_transport()) # 建立安全文件傳送協議
+    sftp = ssh.open_sftp() # 執行這個服務
+    sftp.get(remote_file, local_file) # 複製遠端檔案
 ip = str(input("請輸入IP位置:"))
-password = 'raspberry'
+password = 'password'
 remote_file = "Remote file path" # 遠端的資料路徑
 local_file = "local file path " # 本地要放置的路徑
 

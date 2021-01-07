@@ -13,7 +13,6 @@
 - 當有可疑人士在家門口徘徊或是靠近時，會藉由telegram bot發送可疑人士的照片給屋主，使屋主能夠隨時監控家的安全
 - 屋主可以針對可疑人士發動攻擊(射橡皮筋)
 
-
 ## 時間
 
 ### 12/18 前 
@@ -28,7 +27,6 @@
 ### 12/25 開心的聖誕節
 
 - 東洲最棒
-
 
 ### 12/30
 
@@ -54,7 +52,8 @@
 
 ### 軟體架構
 - Telegram bot
-- Python
+- Python Programming
+- NXT Programming
 
 ## 硬體設備
 ### Raspberry Pi
@@ -119,7 +118,7 @@ sudo pip install DateTime
 - [這個 NXT](https://zh.wikipedia.org/wiki/WWE_NXT)
 - [那個 NXT](https://zh.wikipedia.org/wiki/%E6%A8%82%E9%AB%98Mindstorms_NXT)
 
-#### 先備條件
+#### 先備條件與設備
 
 - 建立樂高殺手（硬體部分）
     - 超音波感測器 * 1
@@ -129,22 +128,10 @@ sudo pip install DateTime
     - 會使用 NXT programming 的程式設計軟體
     - <font color = 'red'>保持童心!</font>
 
-#### 步驟
+#### 組裝一個機械手臂
 
-1. **組裝一個機械手臂**
 ![](https://i.imgur.com/KfIdirw.jpg)
 ![](https://i.imgur.com/YC4Xkg0.jpg)
-
-2. **使用 NXT programming 設計程式以操作機械手臂**
-    - 使用 NXT 專屬傳輸線連接電腦
-    - 安裝 [LEGO MINDSTORMS Educate NXT programming](https://education.lego.com/en-us/downloads/retiredproducts/nxt/software)
-    ![](https://i.imgur.com/cqcOdmt.jpg)
-    - 使用內建的程式方塊設計需要的功能
-    - 測量距離同時判斷物體距離，再進行各項動作
-    ![](https://i.imgur.com/EnmBNxI.jpg)
-
-    - 重置變數
-    ![](https://i.imgur.com/aT3GywA.jpg)
 
 #### 成品!!!
 
@@ -152,8 +139,9 @@ sudo pip install DateTime
 
 ## 軟體系統架構
 
-- Python
 - Telegram Bot
+- Python Programming
+- NXT Programming
 
 ### 建立 telegram bot
 1. 搜尋 `BotFather`（點選有藍勾勾的那個）
@@ -196,7 +184,22 @@ sudo pip install DateTime
 
 ![](https://i.imgur.com/EjbvFZu.png)
 
-### Python
+### Python Programming
+```python=
+// Python 程式 (我最後版本在 Pi 上，我晚點連進 Pi 把程式cp出來)
+```
+### NXT Programming
+#### 使用 NXT programming 設計程式以操作機械手臂
+- 使用 NXT 專屬傳輸線連接電腦
+- 安裝 [LEGO MINDSTORMS Educate NXT programming](https://education.lego.com/en-us/downloads/retiredproducts/nxt/software)
+  ![](https://i.imgur.com/cqcOdmt.jpg)
+  
+- 使用內建的程式方塊設計需要的功能
+- 測量距離同時判斷物體距離，再進行各項動作
+  ![](https://i.imgur.com/EnmBNxI.jpg)
+  
+- 重置變數
+  ![](https://i.imgur.com/aT3GywA.jpg)
 
 
 ## 未來展望

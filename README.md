@@ -140,6 +140,14 @@ sudo pip install DateTime
 
 ![](https://i.imgur.com/ajCazHq.jpg)
 
+#### 最後大合體
+
+![](https://i.imgur.com/07aorWo.jpg)
+![](https://i.imgur.com/SSlxhbB.jpg)
+![](https://i.imgur.com/bejrFET.jpg)
+![](https://i.imgur.com/4BTY2pO.jpg)
+
+
 ## 軟體系統架構
 
 - Telegram Bot
@@ -187,142 +195,7 @@ sudo pip install DateTime
 
 ![](https://i.imgur.com/EjbvFZu.png)
 
-### Python Programming
-```python=
-import telepot
-import RPi.GPIO as GPIO
-import time
-import datetime
-from telepot.loop import MessageLoop
-from subprocess import call
 
-PIR = 17
-
-GPIO.setwarnings(False)
-GPIO.setmode(GPIO.BCM)
-GPIO.setup(PIR, GPIO.IN)
-
-# 儲存誰有訂閱通知
-notifyTarget = list()
-
-# BeepBoopBot Token
-bot = telepot.Bot('你的token')
-
-checkisme = False
-
-def handle(msg):
-    global checkisme
-    chat_id = msg['chat']['id']
-    telegramText = msg['text']
-    print('Message received from ' + str(chat_id))
-    # 開始連線，向 bot 訂閱通知
-    if telegramText == '/start':
-        bot.sendMessage(chat_id, 'Welcome to BeepBoop Notification')
-        # 把所有向 bot 訂閱的 chat_id 都加入發送清單
-        if chat_id not in notifyTarget:
-            notifyTarget.append(chat_id)
-            print("Current notify list: " + str(notifyTarget))
-    # 對 NXT 傳送攻擊指令
-    elif telegramText == '/attack':
-        bot.sendMessage(chat_id, 'Attack!')
-        f = open('124.txt','w+')
-        f.write('/attack')
-        f.close()
-    # 對 NXT 下達停止攻擊
-    elif telegramText == '/stop':
-        bot.sendMessage(chat_id, 'Stop Attack!')
-        f = open('124.txt','w+')
-        f.write('/stop')
-        f.close()
-    # 告訴 bot 短時間內如果偵測到不需要通知 ( 因為是屋主 )
-    elif telegramText == '/isme':
-        bot.sendMessage(chat_id, 'Welcome home!')
-        checkisme = True
-        for singleChat in notifyTarget:
-            bot.sendMessage(singleChat, 'Stop detecting for 30 second, Safe and Sound')
-    # 結束連線
-    elif telegramText == '/exit':
-        notifyTarget.remove(chat_id)
-        bot.sendMessage(chat_id, 'Good Bye~')
-
-# 當偵測到人執行通知與拍照
-def captureWhenDetect(channel):
-    global checkisme
-    # 檢查目前偵測到的可疑人士，是否為屋主
-    if (checkisme == True):
-        checkisme = False
-        # 停止拍照與通知屋主
-        time.sleep(30)
-        # 向所有訂閱 bot 的人都發送「繼續偵測」的訊息
-        for singleChat in notifyTarget:
-            bot.sendMessage(singleChat, "Continue detected!")
-        return
-    print("Event call back")
-    # 使用 shell 進行 webcam 拍照
-    call(["fswebcam", "image.jpg"])
-    # 向所有訂閱 bot 的人都發送「偵測到可疑人士」的訊息 & 照片
-    for singleChat in notifyTarget:
-        bot.sendMessage(singleChat, "Some activity detected!")
-        bot.sendPhoto(singleChat, open("image.jpg", "rb"))
-
-# 針對 PIR17 進行事件偵測
-# GPIO.RISING 從低電壓 -> 高電壓 (偵測到人了)
-# bouncetime : 每次事件要間隔多久才會又偵測
-GPIO.add_event_detect(PIR, GPIO.RISING, bouncetime = 3000)
-# 當 event 發生時，做 callback(回調函式)，執行 captureWhenDetect
-GPIO.add_event_callback(PIR, captureWhenDetect)
-
-# Bot 收到訊息後執行 handle
-bot.message_loop(handle)
-
-while True:
-    time.sleep(1)
-```
-- NXT 連接 telegram bot
-```python=
-import pyautogui
-import os 
-import shutil
-import time
-import paramiko
-
-def ssh_scp_get(ip, port, user, password, remote_file, local_file): 
-    ssh = paramiko.SSHClient() # 建立SSH
-    ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy()) # 允許連接不在known_hosts文件上的主機
-    ssh.connect(ip, 22, 'username', password) # 進行ssh連接 
-    a = ssh.exec_command('date') # 執行命令
-    stdin, stdout, stderr = a  
-    print(stdout.read())
-    sftp = paramiko.SFTPClient.from_transport(ssh.get_transport()) # 建立SFTP服務
-    sftp = ssh.open_sftp() # 在ssh server 上啟用 sftp session
-    sftp.get(remote_file, local_file) # 複製遠端檔案
-    
-ip = str(input("請輸入IP位置:"))
-password = 'password'
-remote_file = "Remote file path" # 遠端的資料路徑
-local_file = "local file path " # 本地要放置的路徑
-
-print("ready")
-time.sleep(5)
-print("go")
-turn = 0
-
-while True:
-    ssh_scp_get(ip,22,"pi",password,remote_file,local_file) 
-    if not os.path.isfile(local_file):
-        continue
-    shutil.copyfile(local_file, r"Other New file path") # 複製新的文件
-    f = open(r"New file path", "r") 
-    mes = f.readline()
-    if (mes == "/attack" and turn == 0):
-        pyautogui.click(1808, 795, button='left')
-        turn += 1
-    elif (mes == "/stop" and turn == 1):
-        pyautogui.click(1872, 850, button='left')
-        turn -= 1
-    else:
-        time.sleep(2)
-```
 ### NXT Programming
 #### 使用 NXT programming 設計程式以操作機械手臂
 - 使用 NXT 專屬傳輸線連接電腦
@@ -336,6 +209,9 @@ while True:
 - 重置變數
   ![](https://i.imgur.com/aT3GywA.jpg)
 
+## 最大的困難
+
+- 機械手臂不如預期可以透過 raspberry pi 直接使用 python 控制，因為 python 目前已無在維護 NXT 可使用的藍芽套件
 
 ## 未來展望
 
@@ -389,3 +265,4 @@ while True:
     - 寫 Github
     - 製作 PPT
     
+ 

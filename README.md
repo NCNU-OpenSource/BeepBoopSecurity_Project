@@ -374,6 +374,7 @@ while True:
 - **107213024 資管三 王為棟**
     - 製作 NXT 機械手臂
     - Raspberry Pi 設置
+    - 寫自動啟動服務
 - **107213048 資管三 趙洸佑**
     - 製作 NXT 機械手臂
     - NXT programming

@@ -102,9 +102,9 @@ sudo pip install DateTime
 
 （這裡要補圖）
 - 紅外線感測器有三條可以外接的線，分別是 5V、資料線、GND 接地線
-- 右邊的是 5V，要接到樹莓派的 PIN2
-- 中間的是資料線，可以接到任一 GPIO 接腳
-- 左邊是接地線，必須也接到樹莓派的接地線接腳上
+- 右邊的是 VCC，要接到樹莓派的 5V
+- 中間的是 Signal 資料線，可以接到任一 GPIO 接腳
+- 左邊是 GND 接地線，必須也接到樹莓派的接地線接腳上
 
 ![](https://www.raspberrypi.com.tw/wp-content/uploads/2014/09/connect-serial-to-raspberry-pi-model-b-plus.png)
 

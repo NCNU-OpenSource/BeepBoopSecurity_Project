@@ -6,13 +6,13 @@ import paramiko
 
 def ssh_scp_get(ip, port, user, password, remote_file, local_file): 
     ssh = paramiko.SSHClient() # 建立SSH
-    ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+    ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy()) # 允許連接不在known_hosts文件上的主機
     ssh.connect(ip, 22, 'username', password) # 進行ssh連接 
-    a = ssh.exec_command('date')
-    stdin, stdout, stderr = a 
-    #print(stdout.read())
-    sftp = paramiko.SFTPClient.from_transport(ssh.get_transport()) # 建立安全文件傳送協議
-    sftp = ssh.open_sftp() # 執行這個服務
+    a = ssh.exec_command('date') # 執行命令
+    stdin, stdout, stderr = a  
+    print(stdout.read())
+    sftp = paramiko.SFTPClient.from_transport(ssh.get_transport()) # 建立SFTP服務
+    sftp = ssh.open_sftp() # 在ssh server 上啟用 sftp session
     sftp.get(remote_file, local_file) # 複製遠端檔案
     
 ip = str(input("請輸入IP位置:"))

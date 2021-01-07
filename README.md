@@ -113,6 +113,9 @@ sudo pip install DateTime
     - 5V（墨綠線）
     - Ground（紫線）
     - GPIO17（紅線）
+
+![](https://1.bp.blogspot.com/-a61fT_GHtEc/UUU8x60ygGI/AAAAAAAACHQ/krkQR3n5GEQ/s1600/function-test_bb-blog.resize.jpg)
+
 - (這裡附圖，可以只拍紅外線感測器的接法就好，webcam 的圖可以附在下面)
 ![](https://i.imgur.com/0umeUXd.jpg)
 

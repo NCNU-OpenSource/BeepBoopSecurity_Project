@@ -10,9 +10,8 @@
 
 ## 功能
 
-- 當有可疑人士在家門口徘徊或是靠近時，會發送可疑人士的照片給屋主，使屋主能夠隨時監控家的安全
-- 屋主可以針對可疑人士發動攻擊(設橡皮筋)
-- 
+- 當有可疑人士在家門口徘徊或是靠近時，會藉由telegram bot發送可疑人士的照片給屋主，使屋主能夠隨時監控家的安全
+- 屋主可以針對可疑人士發動攻擊(射橡皮筋)
 
 
 ## 時間
@@ -45,39 +44,47 @@
 
 - 整合 NXT & Raspberry pi
 
-## 所需硬體設備
-- Raspberry Pi 3
-### 紅外線感測可疑人士
+## 整體架構
+
+### 硬體架構
+- Raspberry Pi
+- LEGO MINDSTORMS NXT
+- Webcam
+- 紅外線感測模組
+
+### 軟體架構
+- Telegram bot
+- Python
+
+## 硬體設備
+### Raspberry Pi
+- Raspberry Pi 3 
+
+### 紅外線感測模組
 - 樹莓派紅外線感測器
     - IR Infrared PIR Motion Sensor
 - 杜邦線（公母、母母）
 - 電阻
 - 麵包板
-### 針對可疑人士進行拍攝
-- WebCamera
-    - SpotCam USB-CAM01 高畫質 FHD 視訊攝影機
-    - [PChome 購買連結](https://24h.m.pchome.com.tw/prod/DCAS4U-A900ANFN2)
-### 對可疑人士發動攻擊
-- NXT 第二代
 
-## Raspberry Pi
-### 紅外線感測器與 webcam 接線方式
+### Webcam
+- SpotCam USB-CAM01 高畫質 FHD 視訊攝影機
+- [PChome 購買連結](https://24h.m.pchome.com.tw/prod/DCAS4U-A900ANFN2)
 
-![](https://www.raspberrypi.com.tw/wp-content/uploads/2014/09/connect-serial-to-raspberry-pi-model-b-plus.png)
-(要在細獎，甚麼感測器的vvc連到Pi的5v...)
-- 5V（墨綠線）
-- Ground（紫線）
-- GPIO17（紅線）
+### LEGO MINDSTORMS NXT
+- 第二代
 
-![](https://i.imgur.com/0umeUXd.jpg)
+## 硬體架構設計
 
-### 在 Pi 需先安裝的套件
+### Raspberry Pi
+
+#### 安裝套件 (待編輯)
 
 - **python package index** : 對python環境的進行安裝
 ```python=
 sudo apt-get install python-pip
 ```
-- **telepot** : 支援許
+- **telepot** : 支援許多 telegram 的 API
 ```python=
 sudo pip install telepot
 ```
@@ -90,50 +97,29 @@ sudo pip install RPi.GPIO
 sudo pip install DateTime
 ```
 
-## Telegram Bot
-### 系統架構
+### 紅外線感測模組
 
-- Python
-- Telegram
+![](https://www.raspberrypi.com.tw/wp-content/uploads/2014/09/connect-serial-to-raspberry-pi-model-b-plus.png)
+(這裡要再細補，例如 : 甚麼感測器的vvc連到Pi的5v...)
+- 5V（墨綠線）
+- Ground（紫線）
+- GPIO17（紅線）
+- (這裡附圖，可以只拍紅外線感測器的接法就好，webcam 的圖可以附在下面)
+![](https://i.imgur.com/0umeUXd.jpg)
 
-### 建立 telegram 
-1. 搜尋 `BotFather`（點選有藍勾勾的那個）
+### Webcam
+- 直接買可支援 USB 的 webcam
+- 將 Webcam 的 USB 接入 Raspberry Pi 即可
+- (這裡附圖)
 
-     ![](https://i.imgur.com/5aSNVAU.jpg)
-     
-2. `/start`
-3. `/newbot`
-4. 替機器人取個名字
-5. 命名 id，以`_bot`結尾（id名不可重複）
-
-![](https://i.imgur.com/fatqGLk.png)
-
-6. 系統會給你一串 API（要加在程式碼中的）
-
- ![](https://i.imgur.com/gEzzqDW.png)
- 
-  - API改在TOKEN那 不能洩漏不然會被亂改
-    
-   ![](https://i.imgur.com/RHdeLZj.png)
-
-
-### 指令介紹
-1. `/start `
-
-![](https://i.imgur.com/Ml9UI5o.jpg)
-
-2. `/attack`
-3. `/isme>`
-4. `/exit>
-## LEGO MINDSTORMS NXT
-
-### 什麼是 NXT？
+### LEGO MINDSTORMS NXT
+#### 什麼是 NXT？
 
 - 這很難解釋，要看你是問哪個 NXT
 - [這個 NXT](https://zh.wikipedia.org/wiki/WWE_NXT)
 - [那個 NXT](https://zh.wikipedia.org/wiki/%E6%A8%82%E9%AB%98Mindstorms_NXT)
 
-### 先備條件
+#### 先備條件
 
 - 建立樂高殺手（硬體部分）
     - 超音波感測器 * 1
@@ -141,9 +127,9 @@ sudo pip install DateTime
     - 樂高零件
 - 需要技能
     - 會使用 NXT programming 的程式設計軟體
-    - <font color = 'red'>保持童心</font>
+    - <font color = 'red'>保持童心!</font>
 
-### 步驟
+#### 步驟
 
 1. **組裝一個機械手臂**
 ![](https://i.imgur.com/KfIdirw.jpg)
@@ -153,16 +139,64 @@ sudo pip install DateTime
     - 使用 NXT 專屬傳輸線連接電腦
     - 安裝 [LEGO MINDSTORMS Educate NXT programming](https://education.lego.com/en-us/downloads/retiredproducts/nxt/software)
     ![](https://i.imgur.com/cqcOdmt.jpg)
-    - 使用內建的程式方塊設計需要的功能（類似 Scratch）
+    - 使用內建的程式方塊設計需要的功能
     - 測量距離同時判斷物體距離，再進行各項動作
     ![](https://i.imgur.com/EnmBNxI.jpg)
 
     - 重置變數
     ![](https://i.imgur.com/aT3GywA.jpg)
 
-### 成品
+#### 成品!!!
 
 ![](https://i.imgur.com/ajCazHq.jpg)
+
+## 軟體系統架構
+
+- Python
+- Telegram Bot
+
+### 建立 telegram bot
+1. 搜尋 `BotFather`（點選有藍勾勾的那個）
+
+     ![](https://i.imgur.com/5aSNVAU.jpg)
+     
+2. 下指令 : `/start`
+3. 下指令 : `/newbot`
+4. 幫自己的機器人取個名字 !
+5. 命名 id，要以`_bot`結尾（id名不可重複）
+
+![](https://i.imgur.com/fatqGLk.png)
+
+6. 系統會給你一串 token（要記起來!!!以後要加在程式碼中的）
+
+ ![](https://i.imgur.com/gEzzqDW.png)
+ 
+  - token 要放進在 TOKEN 裡，記得不能洩漏不然會被亂改!
+    
+   ![](https://i.imgur.com/RHdeLZj.png)
+
+### 指令介紹
+1. `/start ` : 開始進行保全偵測
+
+![](https://i.imgur.com/Ml9UI5o.jpg)
+
+2. `/attack` : 對可疑人士進行攻擊
+
+![](https://i.imgur.com/yImZqk7.png)
+
+3. `/stop` : 停止攻擊
+
+![](https://i.imgur.com/TBCBh3E.png)
+
+4. `/isme>` : 告訴保全機器人，你是屋主不是可疑人士!
+
+![](https://i.imgur.com/Z1fg6QC.png)
+
+5. `/exit>` : 停止保全偵測系統
+
+![](https://i.imgur.com/EjbvFZu.png)
+
+### Python
 
 
 ## 未來展望
@@ -213,8 +247,9 @@ sudo pip install DateTime
     - 製作樹莓派紅外線感測
     - 製作PPT
 - **107213055 資管三 邱品萍**
+    - 寫 Github
     - 建立 telegram bot
     - 樹莓派連接 WebCam
     - Python Programming(紅外線感測 + webcam 影像處理)
     - 製作PPT
-    - 撰寫 Github
+    

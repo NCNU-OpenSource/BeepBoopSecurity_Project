@@ -55,7 +55,7 @@
 - Python Programming
 - NXT Programming
 
-## 硬體設備
+## 先備條件與設備
 ### Raspberry Pi
 - Raspberry Pi 3 
 
@@ -70,8 +70,10 @@
 - SpotCam USB-CAM01 高畫質 FHD 視訊攝影機
 - [PChome 購買連結](https://24h.m.pchome.com.tw/prod/DCAS4U-A900ANFN2)
 
-### LEGO MINDSTORMS NXT
-- 第二代
+### LEGO MINDSTORMS NXT 第二代
+- 超音波感測器 * 1
+- 馬達 * 3
+- 樂高零件
 
 ## 硬體架構設計
 
@@ -117,16 +119,6 @@ sudo pip install DateTime
 - 這很難解釋，要看你是問哪個 NXT
 - [這個 NXT](https://zh.wikipedia.org/wiki/WWE_NXT)
 - [那個 NXT](https://zh.wikipedia.org/wiki/%E6%A8%82%E9%AB%98Mindstorms_NXT)
-
-#### 先備條件與設備
-
-- 建立樂高殺手（硬體部分）
-    - 超音波感測器 * 1
-    - 馬達 * 3
-    - 樂高零件
-- 需要技能
-    - 會使用 NXT programming 的程式設計軟體
-    - <font color = 'red'>保持童心!</font>
 
 #### 組裝一個機械手臂
 
@@ -236,23 +228,24 @@ sudo pip install DateTime
     - 寫 github
     - 樹莓派連接 WebCam
     - NXT 藍芽連線
-    - 製作PPT
+    - 製作 PPT
 - **107213024 資管三 王為棟**
     - 製作 NXT 機械手臂
     - NXT 藍芽連線
+    - Raspberry Pi 設置
 - **107213048 資管三 趙洸佑**
     - 製作 NXT 機械手臂
     - NXT programming
     - NXT 藍芽連線
-    - 製作PPT
+    - 製作 PPT
 - **107213051 資管三 李畇彤**
     - 寫 github
     - 製作樹莓派紅外線感測
-    - 製作PPT
+    - 製作 PPT
 - **107213055 資管三 邱品萍**
     - 寫 Github
     - 建立 telegram bot
     - 樹莓派連接 WebCam
     - Python Programming(紅外線感測 + webcam 影像處理)
-    - 製作PPT
+    - 製作 PPT
     

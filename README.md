@@ -79,7 +79,7 @@
 
 ### Raspberry Pi
 
-#### 安裝套件 (待編輯)
+#### 安裝套件
 
 - **python package index** : 在 raspberry pi 上安裝 python 的套件管理
 ```python=
@@ -101,10 +101,12 @@ sudo pip install DateTime
 
 ### 紅外線感測模組
 
+![](https://i.imgur.com/zqmtaaT.jpg)
+
 - 紅外線感測器有三條可以外接的線，分別是 5V、資料線、GND 接地線
-- 右邊的是 VCC，要接到樹莓派的 5V
-- 中間的是 Signal 資料線，可以接到任一 GPIO 接腳
-- 左邊是 GND 接地線，必須也接到樹莓派的接地線接腳上
+- 左邊的是 VCC，要接到樹莓派的 5V
+- 中間的是資料線，可以接到任一 GPIO 接腳
+- 右邊是 GND 接地線，必須接到樹莓派的接地線接腳上
 
 ![](https://www.raspberrypi.com.tw/wp-content/uploads/2014/09/connect-serial-to-raspberry-pi-model-b-plus.png)
 
@@ -115,6 +117,7 @@ sudo pip install DateTime
     - GPIO17（紅線）
 
 ![](https://1.bp.blogspot.com/-a61fT_GHtEc/UUU8x60ygGI/AAAAAAAACHQ/krkQR3n5GEQ/s1600/function-test_bb-blog.resize.jpg)
+![](https://i.imgur.com/hBooB81.jpg)
 
 ### Webcam
 - 直接買可支援 USB 的 webcam

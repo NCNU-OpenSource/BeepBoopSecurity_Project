@@ -81,26 +81,26 @@
 
 #### 安裝套件 (待編輯)
 
-- **python package index** : 對python環境的進行安裝
+- **python package index** : 在 raspberry pi 上安裝 python 的套件管理
 ```python=
 sudo apt-get install python-pip
 ```
-- **telepot** : 支援許多 telegram 的 API
+- **telepot** : 整合所有 telegram API，方便開發者使用的 python packge，通過安裝 telepot 我們可以直接在 python 中使用 telegram API 的功能
 ```python=
 sudo pip install telepot
 ```
-- **GPIO**
+- **GPIO** : 可以讓我們藉由程式與我們的裝置進行通訊，可以自由地控制與使用裝置
+
 ```python=
 sudo pip install RPi.GPIO
 ```
-- **DateTime**
+- **DateTime** : python 的模組，主要負責日期和時間的解析、格式化和計算。
 ```python=
 sudo pip install DateTime
 ```
 
 ### 紅外線感測模組
 
-（這裡要補圖）
 - 紅外線感測器有三條可以外接的線，分別是 5V、資料線、GND 接地線
 - 右邊的是 VCC，要接到樹莓派的 5V
 - 中間的是 Signal 資料線，可以接到任一 GPIO 接腳
@@ -116,13 +116,10 @@ sudo pip install DateTime
 
 ![](https://1.bp.blogspot.com/-a61fT_GHtEc/UUU8x60ygGI/AAAAAAAACHQ/krkQR3n5GEQ/s1600/function-test_bb-blog.resize.jpg)
 
-- (這裡附圖，可以只拍紅外線感測器的接法就好，webcam 的圖可以附在下面)
-![](https://i.imgur.com/0umeUXd.jpg)
-
 ### Webcam
 - 直接買可支援 USB 的 webcam
 - 將 Webcam 的 USB 接入 Raspberry Pi 即可
-- (這裡附圖)
+![](https://i.imgur.com/0umeUXd.jpg)
 
 ### LEGO MINDSTORMS NXT
 #### 什麼是 NXT？
@@ -167,7 +164,7 @@ sudo pip install DateTime
    ![](https://i.imgur.com/RHdeLZj.png)
 
 ### 指令介紹
-1. `/start ` : 開始進行保全偵測
+1. `/start ` : 開始訂閱保全偵測系統
 
 ![](https://i.imgur.com/Ml9UI5o.jpg)
 
@@ -179,17 +176,104 @@ sudo pip install DateTime
 
 ![](https://i.imgur.com/TBCBh3E.png)
 
-4. `/isme>` : 告訴保全機器人，你是屋主不是可疑人士!
+4. `/isme` : 告訴保全機器人，你是屋主不是可疑人士!
 
 ![](https://i.imgur.com/Z1fg6QC.png)
 
-5. `/exit>` : 停止保全偵測系統
+5. `/exit` : 取消訂閱保全偵測系統
 
 ![](https://i.imgur.com/EjbvFZu.png)
 
 ### Python Programming
 ```python=
-// Python 程式 (我最後版本在 Pi 上，我晚點連進 Pi 把程式cp出來)
+import telepot
+import RPi.GPIO as GPIO
+import time
+import datetime
+from telepot.loop import MessageLoop
+from subprocess import call
+
+PIR = 17
+
+GPIO.setwarnings(False)
+GPIO.setmode(GPIO.BCM)
+GPIO.setup(PIR, GPIO.IN)
+
+# 儲存誰有訂閱通知
+notifyTarget = list()
+
+# BeepBoopBot Token
+bot = telepot.Bot('1434178925:AAEC-3dYZ42QwSFEbir0_QfowlPrQ9shMRc')
+
+checkisme = False
+
+def handle(msg):
+    global checkisme
+    chat_id = msg['chat']['id']
+    telegramText = msg['text']
+    print('Message received from ' + str(chat_id))
+    # 開始連線，向 bot 訂閱通知
+    if telegramText == '/start':
+        bot.sendMessage(chat_id, 'Welcome to BeepBoop Notification')
+        # 把所有向 bot 訂閱的 chat_id 都加入發送清單
+        if chat_id not in notifyTarget:
+            notifyTarget.append(chat_id)
+            print("Current notify list: " + str(notifyTarget))
+    # 對 NXT 傳送攻擊指令
+    elif telegramText == '/attack':
+        bot.sendMessage(chat_id, 'Attack!')
+        f = open('124.txt','w+')
+        f.write('/attack')
+        f.close()
+    # 對 NXT 下達停止攻擊
+    elif telegramText == '/stop':
+        bot.sendMessage(chat_id, 'Stop Attack!')
+        f = open('124.txt','w+')
+        f.write('/stop')
+        f.close()
+    # 告訴 bot 短時間內如果偵測到不需要通知 ( 因為是屋主 )
+    elif telegramText == '/isme':
+        bot.sendMessage(chat_id, 'Welcome home!')
+        checkisme = True
+        for singleChat in notifyTarget:
+            bot.sendMessage(singleChat, 'Stop detecting for 30 second, Safe and Sound')
+    # 結束連線
+    elif telegramText == '/exit':
+        notifyTarget.remove(chat_id)
+        bot.sendMessage(chat_id, 'Good Bye~')
+
+# 當偵測到人執行通知與拍照
+def captureWhenDetect(channel):
+    global checkisme
+    # 檢查目前偵測到的可疑人士，是否為屋主
+    if (checkisme == True):
+        checkisme = False
+        # 停止拍照與通知屋主
+        time.sleep(30)
+        # 向所有訂閱 bot 的人都發送「繼續偵測」的訊息
+        for singleChat in notifyTarget:
+            bot.sendMessage(singleChat, "Continue detected!")
+        return
+    print("Event call back")
+    # 使用 shell 進行 webcam 拍照
+    call(["fswebcam", "image.jpg"])
+    # 向所有訂閱 bot 的人都發送「偵測到可疑人士」的訊息 & 照片
+    for singleChat in notifyTarget:
+        bot.sendMessage(singleChat, "Some activity detected!")
+        bot.sendPhoto(singleChat, open("image.jpg", "rb"))
+
+# 針對 PIR17 進行事件偵測
+# GPIO.RISING 從低電壓 -> 高電壓 (偵測到人了)
+# bouncetime : 每次事件要間隔多久才會又偵測
+GPIO.add_event_detect(PIR, GPIO.RISING, bouncetime = 3000)
+# 當 event 發生時，做 callback(回調函式)，執行 captureWhenDetect
+GPIO.add_event_callback(PIR, captureWhenDetect)
+
+# Bot 收到訊息後執行 handle
+bot.message_loop(handle)
+
+while True:
+    time.sleep(1)
 ```
 - NXT 連接 telegram bot
 ```python=
@@ -252,10 +336,10 @@ while True:
 
 ## 未來展望
 
-1. telegram bot 介面可以再優化，變得更人性化
-2. 不需再短時間一直補充攻擊武器(eg.橡皮筋)，而是就很有
+1. telegram bot 介面可以再優化，變得更人性化(例如 : 把指令用成按鈕)
+2. 攻擊變成全自動化
 3. 可以設定服務開啟與關閉的時間
-2. 可以結合 hey google 智慧語音
+4. 可以結合 hey google 智慧語音
 
 ## 參考資料
 
@@ -283,25 +367,22 @@ while True:
 - **107213013 資管三 陳暐婷**
     - 寫 github
     - 樹莓派連接 WebCam
-    - NXT 藍芽連線
     - 製作 PPT
 - **107213024 資管三 王為棟**
     - 製作 NXT 機械手臂
-    - NXT 藍芽連線
     - Raspberry Pi 設置
 - **107213048 資管三 趙洸佑**
     - 製作 NXT 機械手臂
     - NXT programming
-    - NXT 藍芽連線
     - 製作 PPT
 - **107213051 資管三 李畇彤**
     - 寫 github
     - 製作樹莓派紅外線感測
     - 製作 PPT
 - **107213055 資管三 邱品萍**
-    - 寫 Github
     - 建立 telegram bot
     - 樹莓派連接 WebCam
-    - Python Programming(紅外線感測 + webcam 影像處理)
+    - Python Programming
+    - 寫 Github
     - 製作 PPT
     

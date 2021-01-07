@@ -206,7 +206,7 @@ GPIO.setup(PIR, GPIO.IN)
 notifyTarget = list()
 
 # BeepBoopBot Token
-bot = telepot.Bot('1434178925:AAEC-3dYZ42QwSFEbir0_QfowlPrQ9shMRc')
+bot = telepot.Bot('你的token')
 
 checkisme = False
 

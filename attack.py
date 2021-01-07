@@ -14,6 +14,7 @@ def ssh_scp_get(ip, port, user, password, remote_file, local_file):
     sftp = paramiko.SFTPClient.from_transport(ssh.get_transport()) # 建立安全文件傳送協議
     sftp = ssh.open_sftp() # 執行這個服務
     sftp.get(remote_file, local_file) # 複製遠端檔案
+    
 ip = str(input("請輸入IP位置:"))
 password = 'password'
 remote_file = "Remote file path" # 遠端的資料路徑

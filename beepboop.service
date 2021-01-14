@@ -3,7 +3,7 @@ Description=BeepBoop_bot
 After=network.target
 
 [Service]
-ExecStart=/usr/bin/python3 /home/pi/BeepBoop_Test.py
+ExecStart=/usr/bin/python3 /home/pi/BeepBoopBot.py
 WorkingDirectory=/home/pi/
 StandardOutput=inherit
 StandardError=inherit

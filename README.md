@@ -42,6 +42,9 @@
 
 - 整合 NXT & Raspberry pi
 
+### 1/12
+- Telegram 介面優化 ( 註冊command + inline-button)
+
 ## 整體架構
 
 ### 硬體架構
@@ -177,15 +180,16 @@ sudo pip install DateTime
 ### 指令介紹
 1. `/start ` : 開始訂閱保全偵測系統
 
+![](https://i.imgur.com/OvhdJ2l.png)
 ![](https://i.imgur.com/Ml9UI5o.jpg)
 
 2. `/attack` : 對可疑人士進行攻擊
 
-![](https://i.imgur.com/yImZqk7.png)
+![](https://i.imgur.com/t1hgK8s.png)
 
 3. `/stop` : 停止攻擊
 
-![](https://i.imgur.com/TBCBh3E.png)
+![](https://i.imgur.com/f2tP0di.png)
 
 4. `/isme` : 告訴保全機器人，你是屋主不是可疑人士!
 
@@ -247,6 +251,7 @@ sudo pip install DateTime
     - 寫 github
     - 紅外線感測
     - 製作 PPT
+    - telergam 介面優化
 - **107213024 資管三 王為棟**
     - 製作 NXT 機械手臂
     - 程式註冊為服務
@@ -261,8 +266,8 @@ sudo pip install DateTime
 - **107213055 資管三 邱品萍**
     - 建立 telegram bot
     - 樹莓派連接 WebCam
-    - Python Programming
     - 寫 Github
     - 製作 PPT
+    - Python Programming
     
  

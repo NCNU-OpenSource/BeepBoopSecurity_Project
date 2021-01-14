@@ -101,7 +101,10 @@ sudo pip install RPi.GPIO
 ```python=
 sudo pip install DateTime
 ```
-
+- **DateTime** : python 的模組，主要負責日期和時間的解析、格式化和計算。
+```python=
+sudo pip install DateTime
+```
 ### 紅外線感測模組
 
 ![](https://i.imgur.com/zqmtaaT.jpg)
@@ -176,11 +179,14 @@ sudo pip install DateTime
   - token 要放進在 TOKEN 裡，記得不能洩漏不然會被亂改!
     
    ![](https://i.imgur.com/RHdeLZj.png)
+   
+7. 進入 BotFather 註冊 command
 
+![](https://i.imgur.com/t7zMXNi.png)
+![](https://i.imgur.com/OvhdJ2l.png)
 ### 指令介紹
 1. `/start ` : 開始訂閱保全偵測系統
 
-![](https://i.imgur.com/OvhdJ2l.png)
 ![](https://i.imgur.com/Ml9UI5o.jpg)
 
 2. `/attack` : 對可疑人士進行攻擊
